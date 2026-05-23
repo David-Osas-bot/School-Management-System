@@ -12,17 +12,17 @@ function sendVerificationEmail(string $toEmail, string $toName, string $token): 
 
     try {
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
+        $mail->Host       = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'davidosas011@gmail.com';
-        $mail->Password   = 'your_new_app_password'; // ← put your new App Password here
+        $mail->Username   = $_ENV['SMTP_USERNAME'];
+        $mail->Password   = $_ENV['SMTP_PASSWORD']; // ← put your new App Password here
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
-        $mail->setFrom('davidosas011@gmail.com', 'School Management');
+        $mail->setFrom($_ENV['SMTP_USERNAME'], 'School Management');
         $mail->addAddress($toEmail, $toName);
 
-        $verifyLink = "http://localhost/SMS/school-management/auth/verify.php?token=" . $token;
+        $verifyLink = $_ENV['APP_URL'] . $token;
 
         $mail->isHTML(true);
         $mail->Subject = 'Verify your email – School Management';
