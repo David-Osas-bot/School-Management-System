@@ -206,9 +206,9 @@ Add screenshots of:
 
 ## 👨‍💻 Author
 
-Built by **Your Name**
+Built by **David-Osas-bot**
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/David-Osas-bot
 
 ---
 
