@@ -27,9 +27,38 @@ if (isset($_POST['submit'])) {
         exit;
     }
 
+    // --- Check duplicate email BEFORE inserting ---
+    $checkStmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $checkStmt->bind_param("s", $email);
+    $checkStmt->execute();
+    $checkStmt->store_result();
+
+    if ($checkStmt->num_rows > 0) {
+        echo '
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Email already registered!",
+                    text: "An account with this email already exists. Please login or use a different email.",
+                    icon: "warning",
+                    confirmButtonText: "Go to Login",
+                    showCancelButton: true,
+                    cancelButtonText: "Try another email"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "../auth/login.php";
+                    } else {
+                        window.location.href = "../auth/register.php";
+                    }
+                });
+            });
+        </script>';
+        exit;
+    }
+
     // --- Insert user ---
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $hashed_password);
 
@@ -48,7 +77,7 @@ if (isset($_POST['submit'])) {
     $stmt2->bind_param("ssi", $token, $expires, $userId);
     $stmt2->execute();
 
-    // --- Actually send the email ✅ ---
+    // --- Send email ---
     $sent = sendVerificationEmail($email, $name, $token);
 
     if ($sent) {
