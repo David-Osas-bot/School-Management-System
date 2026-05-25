@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduManage – Sign In</title>
+    <title>Schoolify – Sign In</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/login.css" />
 </head>

@@ -1,8 +1,0 @@
-cat > .gitignore << 'EOF'
-.env
-vendor/
-.env.local
-.env.backup
-*.log
-node_modules/
-EOF

@@ -6,27 +6,31 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+// ↓ THIS IS WHAT WAS MISSING
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 function sendVerificationEmail(string $toEmail, string $toName, string $token): bool
 {
-    $mail = new PHPMailer(true);
+  $mail = new PHPMailer(true);
 
-    try {
-        $mail->isSMTP();
-        $mail->Host       = $_ENV['SMTP_HOST'];
-        $mail->SMTPAuth   = true;
-        $mail->Username   = $_ENV['SMTP_USERNAME'];
-        $mail->Password   = $_ENV['SMTP_PASSWORD']; // ← put your new App Password here
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+  try {
+    $mail->isSMTP();
+    $mail->Host       = $_ENV['SMTP_HOST'];
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $_ENV['SMTP_USERNAME'];
+    $mail->Password   = $_ENV['SMTP_PASSWORD']; // ← put your new App Password here
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-        $mail->setFrom($_ENV['SMTP_USERNAME'], 'School Management');
-        $mail->addAddress($toEmail, $toName);
+    $mail->setFrom($_ENV['SMTP_USERNAME'], 'School Management');
+    $mail->addAddress($toEmail, $toName);
 
-        $verifyLink = $_ENV['APP_URL'] . $token;
+    $verifyLink = $_ENV['APP_URL'] . $token;
 
-        $mail->isHTML(true);
-        $mail->Subject = 'Verify your email – School Management';
-        $mail->Body    = '
+    $mail->isHTML(true);
+    $mail->Subject = 'Verify your email – School Management';
+    $mail->Body    = '
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +45,8 @@ function sendVerificationEmail(string $toEmail, string $toName, string $token): 
 
           <tr>
             <td style="background:#4f46e5;padding:36px 40px;text-align:center;">
-              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:0.5px;">School Management</h1>
+              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:0.5px;">Schoolify</h1><br/>
+              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:500;letter-spacing:0.5px;">School Management</h1>
               <p style="margin:6px 0 0;color:#c7d2fe;font-size:14px;">Email Verification</p>
             </td>
           </tr>
@@ -101,12 +106,16 @@ function sendVerificationEmail(string $toEmail, string $toName, string $token): 
 </body>
 </html>';
 
-        $mail->AltBody = "Hi {$toName}, verify your account here: {$verifyLink} (link expires in 24 hours)";
+    $mail->AltBody = "Hi {$toName}, verify your account here: {$verifyLink} (link expires in 24 hours)";
 
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        echo "<pre>FAILED: " . $mail->ErrorInfo . "</pre>";
-        return false;
-    }
+    $mail->send();
+    return true;
+  } catch (Exception $e) {
+    error_log("Mailer Error: " . $mail->ErrorInfo);
+    echo "<pre style='color:red;background:#fff;padding:10px;'>";
+    echo "SMTP Error: " . $mail->ErrorInfo . "<br>";
+    echo "Exception: " . $e->getMessage();
+    echo "</pre>";
+    return false;
+  }
 }
