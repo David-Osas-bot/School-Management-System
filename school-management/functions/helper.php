@@ -29,7 +29,7 @@ function sendVerificationEmail(string $toEmail, string $toName, string $token): 
     $verifyLink = $_ENV['APP_URL'] . $token;
 
     $mail->isHTML(true);
-    $mail->Subject = 'Startify: Verify your email';
+    $mail->Subject = 'Schoolify: Verify your email';
     $mail->Body    = '
 <!DOCTYPE html>
 <html>
