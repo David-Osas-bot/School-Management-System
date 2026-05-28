@@ -144,6 +144,52 @@ $currentPage = 'dashboard';
 
             </div>
 
+            <div class="ra-card">
+                <div class="ra-header">
+                    <h2>Recent Activity</h2>
+                </div>
+                <ul class="ra-list">
+                    <li class="ra-item">
+                        <div class="ra-left">
+                            <span class="ra-dot"></span>
+                            <span class="ra-text">New student registration: Sarah Johnson</span>
+                        </div>
+                        <span class="ra-time">2 min ago</span>
+                    </li>
+                    <li class="ra-item">
+                        <div class="ra-left">
+                            <span class="ra-dot"></span>
+                            <span class="ra-text">Grade posted for Class 10A Mathematics</span>
+                        </div>
+                        <span class="ra-time">15 min ago</span>
+                    </li>
+                    <li class="ra-item">
+                        <div class="ra-left">
+                            <span class="ra-dot"></span>
+                            <span class="ra-text">Fee payment received from Mark Wilson</span>
+                        </div>
+                        <span class="ra-time">1 hour ago</span>
+                    </li>
+                    <li class="ra-item">
+                        <div class="ra-left">
+                            <span class="ra-dot"></span>
+                            <span class="ra-text">Teacher leave approved: Mr. David Chen</span>
+                        </div>
+                        <span class="ra-time">2 hours ago</span>
+                    </li>
+                    <li class="ra-item">
+                        <div class="ra-left">
+                            <span class="ra-dot"></span>
+                            <span class="ra-text">Timetable updated for Term 2</span>
+                        </div>
+                        <span class="ra-time">3 hours ago</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- ============================================================
+     END RECENT ACTIVITY COMPONENT
+     ============================================================ -->
+
         </main>
     </div>
 
