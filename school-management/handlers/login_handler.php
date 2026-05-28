@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
                         icon: "success",
                         confirmButtonText: "Home"
                     }).then(() => {
-                        window.location.href = "../includes/sidebar.php";
+                        window.location.href = "../admin/dashboard.php";
                     });
                 });
             </script>
@@ -66,7 +66,6 @@ if (isset($_POST['submit'])) {
                             icon: "warning",
                             confirmButtonText: "Login",
                             showCancelButton: true,
-                            cancelButtonText: "Retry inseerting password"
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = "../auth/login.php";

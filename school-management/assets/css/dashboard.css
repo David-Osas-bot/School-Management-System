@@ -1,0 +1,225 @@
+/* ===== DASHBOARD ===== */
+
+/* ---- Main layout ---- */
+.dash-main {
+    padding: 28px 28px 40px;
+    max-width: 1400px;
+}
+
+/* ---- Page title ---- */
+.dash-title {
+    margin-bottom: 24px;
+}
+
+.dash-title h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.dash-title p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ---- Stat cards grid ---- */
+.dash-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ---- Individual stat card ---- */
+.stat-card {
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+.stat-card-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Card color themes */
+.stat-blue {
+    background: #EFF6FF;
+    border-color: #DBEAFE;
+}
+
+.stat-teal {
+    background: #EFFDF8;
+    border-color: #D1FAE5;
+}
+
+.stat-amber {
+    background: #FFFBEB;
+    border-color: #FDE68A;
+}
+
+.stat-red {
+    background: #FFF5F5;
+    border-color: #FED7D7;
+}
+
+/* Stat text */
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.1;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 2px 0;
+}
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.stat-change.positive {
+    color: #16a34a;
+}
+
+.stat-change.negative {
+    color: #dc2626;
+}
+
+.stat-change.neutral {
+    color: #6b7280;
+}
+
+/* Stat icon bubble */
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #6b7280;
+}
+
+/* ---- Charts row ---- */
+.dash-charts {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 16px;
+}
+
+/* ---- Chart card ---- */
+.chart-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    padding: 22px 24px 20px;
+}
+
+.chart-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.chart-legend {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #6b7280;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 16px;
+    gap: 6px;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.chart-wrap {
+    position: relative;
+    height: 280px;
+}
+
+.chart-donut-wrap {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+    .dash-charts {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .dash-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .dash-main {
+        padding: 20px 16px 32px;
+    }
+
+    .dash-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+    }
+
+    .stat-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .dash-cards {
+        grid-template-columns: 1fr;
+    }
+}
