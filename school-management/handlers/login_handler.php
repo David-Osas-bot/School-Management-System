@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
                         icon: "success",
                         confirmButtonText: "Home"
                     }).then(() => {
-                        window.location.href = "../admin/dashboard.php";
+                        window.location.href = "/SMS/school-management/includes/layout_start.php";
                     });
                 });
             </script>

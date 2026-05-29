@@ -22,7 +22,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 
         <div class="nav-group">
             <span class="nav-label">CORE</span>
-            <a href="/SMS/school-management/admin/dashboard.php"
+            <a href="/SMS/school-management/admin/index.php"
                 class="nav-item <?= $currentPage === 'dashboard' ? 'active' : '' ?>">
                 <i class="nav-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -1,0 +1,262 @@
+ /* ── Scoped to .st-* prefix ── */
+ :root {
+     --st-dark: #1a2332;
+     --st-accent: #2ab7a4;
+     --st-active-bg: #1a2332;
+     --st-inactive-bg: #2ab7a4;
+     --st-border: #e8ecef;
+     --st-bg: #ffffff;
+     --st-page-bg: #f4f6f9;
+     --st-text: #2d3748;
+     --st-muted: #8a96a3;
+     --st-radius: 10px;
+     --st-font: 'Segoe UI', system-ui, sans-serif;
+ }
+
+ /* ── Page header ── */
+ .st-page-header {
+     display: flex;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 12px;
+     margin-bottom: 22px;
+     font-family: var(--st-font);
+ }
+
+ .st-page-header h1 {
+     margin: 0 0 4px;
+     font-size: 1.45rem;
+     font-weight: 800;
+     color: var(--st-text);
+     letter-spacing: -.02em;
+ }
+
+ .st-page-header p {
+     margin: 0;
+     font-size: .84rem;
+     color: var(--st-muted);
+ }
+
+ /* Add Student button */
+ .st-btn-add {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     background: var(--st-dark);
+     color: #fff;
+     border: none;
+     border-radius: var(--st-radius);
+     padding: 10px 20px;
+     font-size: .875rem;
+     font-weight: 600;
+     font-family: var(--st-font);
+     cursor: pointer;
+     white-space: nowrap;
+     transition: opacity .18s;
+ }
+
+ .st-btn-add:hover {
+     opacity: .85;
+ }
+
+ .st-btn-add svg {
+     flex-shrink: 0;
+ }
+
+ /* ── Card shell ── */
+ .st-card {
+     background: var(--st-bg);
+     border: 1px solid var(--st-border);
+     border-radius: var(--st-radius);
+     box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+     overflow: hidden;
+     font-family: var(--st-font);
+     width: 100%;
+     box-sizing: border-box;
+ }
+
+ /* ── Toolbar ── */
+ .st-toolbar {
+     display: flex;
+     align-items: center;
+     gap: 14px;
+     padding: 16px 20px;
+     border-bottom: 1px solid var(--st-border);
+     flex-wrap: wrap;
+ }
+
+ /* Search box */
+ .st-search-wrap {
+     position: relative;
+     flex: 1;
+     min-width: 200px;
+     max-width: 340px;
+ }
+
+ .st-search-wrap svg {
+     position: absolute;
+     left: 12px;
+     top: 50%;
+     transform: translateY(-50%);
+     color: var(--st-muted);
+     pointer-events: none;
+ }
+
+ .st-search {
+     width: 100%;
+     padding: 9px 12px 9px 36px;
+     border: 1px solid var(--st-border);
+     border-radius: 8px;
+     font-size: .855rem;
+     font-family: var(--st-font);
+     color: var(--st-text);
+     background: var(--st-page-bg);
+     box-sizing: border-box;
+     outline: none;
+     transition: border-color .18s, box-shadow .18s;
+ }
+
+ .st-search:focus {
+     border-color: var(--st-accent);
+     box-shadow: 0 0 0 3px rgba(42, 183, 164, .12);
+     background: #fff;
+ }
+
+ /* Count badge */
+ .st-badge {
+     background: var(--st-accent);
+     color: #fff;
+     font-size: .78rem;
+     font-weight: 700;
+     padding: 5px 13px;
+     border-radius: 20px;
+     white-space: nowrap;
+ }
+
+ /* ── Table wrapper (horizontal scroll on small screens) ── */
+ .st-table-wrap {
+     overflow-x: auto;
+     -webkit-overflow-scrolling: touch;
+ }
+
+ /* ── Table ── */
+ .st-table {
+     width: 100%;
+     border-collapse: collapse;
+     min-width: 620px;
+ }
+
+ /* Head */
+ .st-table thead tr {
+     border-bottom: 1px solid var(--st-border);
+ }
+
+ .st-table thead th {
+     padding: 11px 18px;
+     text-align: left;
+     font-size: .78rem;
+     font-weight: 600;
+     color: var(--st-muted);
+     letter-spacing: .04em;
+     text-transform: uppercase;
+     white-space: nowrap;
+     background: var(--st-bg);
+ }
+
+ /* Body rows */
+ .st-table tbody tr {
+     border-bottom: 1px solid var(--st-border);
+     transition: background .16s;
+     cursor: default;
+ }
+
+ .st-table tbody tr:last-child {
+     border-bottom: none;
+ }
+
+ .st-table tbody tr:hover {
+     background: #f7fffe;
+ }
+
+ .st-table tbody td {
+     padding: 15px 18px;
+     font-size: .875rem;
+     color: var(--st-text);
+     vertical-align: middle;
+ }
+
+ /* ID cell */
+ .st-id {
+     font-size: .78rem !important;
+     color: var(--st-muted) !important;
+     font-family: 'Courier New', monospace;
+     letter-spacing: .03em;
+ }
+
+ /* Name cell */
+ .st-name {
+     font-weight: 700;
+ }
+
+ /* Class pill */
+ .st-class-pill {
+     display: inline-block;
+     border: 1px solid var(--st-border);
+     border-radius: 6px;
+     padding: 3px 10px;
+     font-size: .8rem;
+     font-weight: 600;
+     color: var(--st-text);
+     background: var(--st-page-bg);
+ }
+
+ /* Status badges */
+ .st-status {
+     display: inline-block;
+     border-radius: 6px;
+     padding: 4px 14px;
+     font-size: .8rem;
+     font-weight: 700;
+     letter-spacing: .01em;
+ }
+
+ .st-status.active {
+     background: var(--st-active-bg);
+     color: #fff;
+ }
+
+ .st-status.inactive {
+     background: var(--st-inactive-bg);
+     color: #fff;
+ }
+
+ /* Actions "..." button */
+ .st-actions-btn {
+     background: none;
+     border: none;
+     cursor: pointer;
+     color: var(--st-muted);
+     font-size: 1.2rem;
+     line-height: 1;
+     padding: 4px 6px;
+     border-radius: 6px;
+     transition: background .16s, color .16s;
+ }
+
+ .st-actions-btn:hover {
+     background: var(--st-border);
+     color: var(--st-text);
+ }
+
+ /* ── Responsive tweaks ── */
+ @media (max-width: 600px) {
+     .st-page-header {
+         flex-direction: column;
+         align-items: flex-start;
+     }
+
+     .st-search-wrap {
+         max-width: 100%;
+     }
+ }

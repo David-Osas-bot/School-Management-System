@@ -1,6 +1,6 @@
 <?php
 session_start();
-$currentPage = 'dashboard';
+$currentPage = 'index';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,15 +9,15 @@ $currentPage = 'dashboard';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard — Schoolify</title>
-    <link rel="stylesheet" href="/SMS/school-management/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/SMS/school-management/assets/css/header.css">
-    <link rel="stylesheet" href="/SMS/school-management/assets/css/dashboard.css">
+    
+    <link rel="stylesheet" href="/SMS/school-management/assets/css/students.css">
 </head>
 
 <body>
 
-    <?php include '../includes/sidebar.php'; ?>
-    <?php include '../includes/header.php'; ?>
+    <?php include '../includes/layout_start.php'; ?>
+
+
 
     <div class="content-wrapper">
         <main class="dash-main">
@@ -195,128 +195,7 @@ $currentPage = 'dashboard';
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="/SMS/school-management/assets/js/sidebar.js"></script>
-    <script>
-        // ── Weekly Attendance Bar Chart ──────────────────────────────
-        const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
-        new Chart(attendanceCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                datasets: [{
-                        label: 'Present',
-                        data: [92, 88, 95, 90, 85],
-                        backgroundColor: '#2DB596',
-                        borderRadius: 4,
-                        barPercentage: 0.5,
-                        categoryPercentage: 0.6
-                    },
-                    {
-                        label: 'Absent',
-                        data: [8, 12, 5, 10, 15],
-                        backgroundColor: '#E05252',
-                        borderRadius: 4,
-                        barPercentage: 0.5,
-                        categoryPercentage: 0.6
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            color: '#9ca3af',
-                            font: {
-                                size: 12
-                            }
-                        },
-                        border: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        min: 0,
-                        max: 100,
-                        grid: {
-                            color: 'rgba(0,0,0,0.06)',
-                            drawTicks: false
-                        },
-                        ticks: {
-                            color: '#9ca3af',
-                            font: {
-                                size: 12
-                            },
-                            padding: 8,
-                            stepSize: 25
-                        },
-                        border: {
-                            display: false,
-                            dash: [4, 4]
-                        }
-                    }
-                }
-            }
-        });
-
-        // ── Grade Distribution Donut Chart ──────────────────────────
-        const gradeCtx = document.getElementById('gradeChart').getContext('2d');
-        new Chart(gradeCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['A', 'B', 'C', 'D', 'F'],
-                datasets: [{
-                    data: [30, 35, 20, 10, 5],
-                    backgroundColor: ['#22c55e', '#2DB596', '#f59e0b', '#E05252', '#6b7280'],
-                    borderWidth: 2,
-                    borderColor: '#ffffff',
-                    hoverOffset: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '65%',
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            color: '#374151',
-                            font: {
-                                size: 13
-                            },
-                            padding: 16,
-                            usePointStyle: true,
-                            pointStyleWidth: 10,
-                            generateLabels: function(chart) {
-                                const data = chart.data;
-                                return data.labels.map((label, i) => ({
-                                    text: `${label}  ${data.datasets[0].data[i]}%`,
-                                    fillStyle: data.datasets[0].backgroundColor[i],
-                                    strokeStyle: data.datasets[0].backgroundColor[i],
-                                    pointStyle: 'circle',
-                                    index: i
-                                }));
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: ctx => ` ${ctx.label}: ${ctx.parsed}%`
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <script src="/SMS/school-management/assets/js/index.js"></script>
 </body>
 
 </html>
