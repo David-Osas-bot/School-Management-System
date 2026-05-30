@@ -1,14 +1,13 @@
 <?php
-// includes/layout.php  — the "App component", include this in every page
-if (session_status() === PHP_SESSION_NONE) session_start();
+session_start();
 
-$currentPage  = $currentPage ?? basename($_SERVER['PHP_SELF'], '.php');
-$pageTitle    = $pageTitle   ?? ucfirst($currentPage);
+$currentPage = basename($_SERVER['PHP_SELF'], '.php');
+$pageTitle   = ucfirst($currentPage);
+
 $userName     = $_SESSION['user']['name']  ?? 'Admin User';
 $userEmail    = $_SESSION['user']['email'] ?? 'admin@schoolify.com';
 $parts        = explode(' ', $userName);
 $userInitials = strtoupper(substr($parts[0], 0, 1) . (isset($parts[1]) ? substr($parts[1], 0, 1) : ''));
-$pageCss      = $pageCss     ?? $currentPage; // loads e.g. dashboard.css, students.css
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,28 +16,14 @@ $pageCss      = $pageCss     ?? $currentPage; // loads e.g. dashboard.css, stude
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schoolify – <?= htmlspecialchars($pageTitle) ?></title>
-
-    <!-- NProgress (loading bar) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
-
-    <!-- Core styles -->
     <link rel="stylesheet" href="/SMS/school-management/assets/css/sidebar.css">
     <link rel="stylesheet" href="/SMS/school-management/assets/css/header.css">
-    <link rel="stylesheet" href="/SMS/school-management/assets/css/layout.css">
-
-    <!-- Per-page style -->
-    <link rel="stylesheet" href="/SMS/school-management/assets/css/<?= htmlspecialchars($pageCss) ?>.css">
-
-    <!-- Any extra <link> or <style> the page needs -->
-    <?= $extraHead ?? '' ?>
+    <link rel="stylesheet" href="/SMS/school-management/assets/css/index.css">
 </head>
 
 <body>
 
-    <!-- NProgress bar -->
-    <div id="nprogress-bar"></div>
-
-    <!-- Mobile overlay -->
+    <!-- Mobile overlay (only once) -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
     <!-- ===== SIDEBAR ===== -->
@@ -183,7 +168,7 @@ $pageCss      = $pageCss     ?? $currentPage; // loads e.g. dashboard.css, stude
     <!-- ===== MAIN WRAPPER ===== -->
     <div class="main-wrapper">
 
-        <!-- ===== HEADER ===== -->
+        <!-- ===== HEADER / TOPBAR ===== -->
         <header class="hdr-root">
             <div class="hdr-left">
                 <button class="hdr-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
@@ -199,6 +184,7 @@ $pageCss      = $pageCss     ?? $currentPage; // loads e.g. dashboard.css, stude
                     <span class="hdr-bread-cur"><?= htmlspecialchars($pageTitle) ?></span>
                 </nav>
             </div>
+
             <div class="hdr-right">
                 <button class="hdr-icon-btn" aria-label="Notifications">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
@@ -218,42 +204,29 @@ $pageCss      = $pageCss     ?? $currentPage; // loads e.g. dashboard.css, stude
             </div>
         </header>
 
-        <!-- ===== PAGE CONTENT — $content is injected here ===== -->
-        <main class="page-content">
-            <?= $content ?? '' ?>
-        </main>
+        <!-- ===== PAGE CONTENT STARTS HERE ===== -->
+        <!-- <main class="page-content">
 
-    </div>
+    </main> -->
+        <!-- ===== PAGE CONTENT ENDS HERE ===== -->
 
-    <!-- NProgress -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+    </div><!-- /.main-wrapper -->
 
-    <!-- Sidebar JS -->
     <script>
-        // NProgress config
-        NProgress.configure({
-            showSpinner: false,
-            speed: 400
-        });
-        document.querySelectorAll('a.nav-item').forEach(link => {
-            link.addEventListener('click', () => NProgress.start());
-        });
-        window.addEventListener('pageshow', () => NProgress.done());
-
-        // Sidebar toggle
         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-            document.getElementById('sidebarOverlay').classList.toggle('show');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
         }
 
         function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('open');
-            document.getElementById('sidebarOverlay').classList.remove('show');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
         }
     </script>
-
-    <!-- Per-page scripts injected here -->
-    <?= $extraScripts ?? '' ?>
 
 </body>
 
