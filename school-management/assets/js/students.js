@@ -4,21 +4,14 @@
 (function () {
     'use strict';
 
-    const ST_DATA = [
-        { id: 'STU001', name: 'Sarah Johnson', cls: '10A', gender: 'Female', email: 'sarah.j@school.com', status: 'active' },
-        { id: 'STU002', name: 'James Wilson', cls: '10B', gender: 'Male', email: 'james.w@school.com', status: 'active' },
-        { id: 'STU003', name: 'Emily Davis', cls: '9A', gender: 'Female', email: 'emily.d@school.com', status: 'active' },
-        { id: 'STU004', name: 'Michael Brown', cls: '11A', gender: 'Male', email: 'michael.b@school.com', status: 'inactive' },
-        { id: 'STU005', name: 'Lisa Anderson', cls: '10A', gender: 'Female', email: 'lisa.a@school.com', status: 'active' },
-        { id: 'STU006', name: 'David Martinez', cls: '9B', gender: 'Male', email: 'david.m@school.com', status: 'active' },
-        { id: 'STU007', name: 'Sophie Taylor', cls: '11B', gender: 'Female', email: 'sophie.t@school.com', status: 'active' },
-        { id: 'STU008', name: 'Ryan Thompson', cls: '10B', gender: 'Male', email: 'ryan.t@school.com', status: 'active' },
-    ];
+    // Holds our active tracking data fetched from the DB
+    let LIVE_ST_DATA = [];
 
     function renderRows(data) {
         const tbody = document.getElementById('stTableBody');
         const count = document.getElementById('stCount');
         if (!tbody) return;
+
         tbody.innerHTML = data.map(s => `
             <tr>
                 <td class="st-id">${s.id}</td>
@@ -33,9 +26,22 @@
         if (count) count.textContent = data.length + ' student' + (data.length !== 1 ? 's' : '');
     }
 
+    // Modern background live fetch implementation
+    async function fetchStudentsFromDatabase() {
+        try {
+            const response = await fetch('../handlers/get_students.php');
+            if (!response.ok) throw new Error("Network issues fetching students.");
+
+            LIVE_ST_DATA = await response.json();
+            renderRows(LIVE_ST_DATA);
+        } catch (error) {
+            console.error("Error loading active directory data:", error);
+        }
+    }
+
     window.filterStudents = function (q) {
         const lq = q.toLowerCase();
-        renderRows(ST_DATA.filter(s =>
+        renderRows(LIVE_ST_DATA.filter(s =>
             s.id.toLowerCase().includes(lq) ||
             s.name.toLowerCase().includes(lq) ||
             s.cls.toLowerCase().includes(lq) ||
@@ -44,8 +50,52 @@
         ));
     };
 
-    window.handleAddStudent = function () { alert('Open Add Student modal'); };
+    // Modal view handlers
+    window.handleAddStudent = function () {
+        document.getElementById('studentModal').style.display = 'flex';
+    };
+
+    window.closeModal = function () {
+        document.getElementById('studentModal').style.display = 'none';
+        document.getElementById('addStudentForm').reset();
+    };
+
+    // Submitting live forms to the MVC handlers directory
+    window.submitStudentForm = async function (event) {
+        event.preventDefault();
+
+        const payload = {
+            id: document.getElementById('m_id').value.trim(),
+            name: document.getElementById('m_name').value.trim(),
+            cls: document.getElementById('m_cls').value.trim(),
+            gender: document.getElementById('m_gender').value,
+            email: document.getElementById('m_email').value.trim()
+        };
+
+        try {
+            const response = await fetch('../handlers/add_students.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                closeModal();
+                // Re-sync with database to display updated table state natively
+                fetchStudentsFromDatabase();
+            } else {
+                alert("Error saving record: " + result.message);
+            }
+        } catch (error) {
+            console.error("Submission failed:", error);
+            alert("Could not process registration request.");
+        }
+    };
+
     window.handleRowAction = function (id) { alert('Actions for ' + id); };
 
-    renderRows(ST_DATA);
+    // Self-starting active runtime trigger
+    fetchStudentsFromDatabase();
 })();
