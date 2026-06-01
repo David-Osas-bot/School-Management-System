@@ -1,32 +1,26 @@
-/* ===== DASHBOARD ===== */
+/* ================================================================
+   assets/css/dashboard.css
+   Styles for admin/index.php only.
+================================================================ */
 
-/* ---- Main layout ---- */
-.dash-main {
-    padding: 28px 28px 40px;
-    max-width: 1400px;
-}
-
-/* ---- Page title ---- */
+/* ── Page Title ── */
 .dash-title {
     margin-bottom: 24px;
 }
 
 .dash-title h1 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #111827;
-    margin: 0 0 4px;
-    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .dash-title p {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #6b7280;
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-top: 3px;
 }
 
-/* ---- Stat cards grid ---- */
+/* ── Stat Cards ── */
 .dash-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -34,17 +28,54 @@
     margin-bottom: 24px;
 }
 
-/* ---- Individual stat card ---- */
-.stat-card {
-    border-radius: 14px;
-    padding: 20px;
-    border: 1px solid transparent;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+@media (max-width: 1100px) {
+    .dash-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+@media (max-width: 560px) {
+    .dash-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #f0f2f5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    /* Staggered entrance */
+    animation: card-in 0.35s ease both;
+}
+
+.dash-cards .stat-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.dash-cards .stat-card:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.dash-cards .stat-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.dash-cards .stat-card:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .stat-card-body {
@@ -54,28 +85,6 @@
     gap: 12px;
 }
 
-/* Card color themes */
-.stat-blue {
-    background: #EFF6FF;
-    border-color: #DBEAFE;
-}
-
-.stat-teal {
-    background: #EFFDF8;
-    border-color: #D1FAE5;
-}
-
-.stat-amber {
-    background: #FFFBEB;
-    border-color: #FDE68A;
-}
-
-.stat-red {
-    background: #FFF5F5;
-    border-color: #FED7D7;
-}
-
-/* Stat text */
 .stat-info {
     display: flex;
     flex-direction: column;
@@ -83,77 +92,97 @@
 }
 
 .stat-label {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: #6b7280;
-    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .stat-value {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: #111827;
     line-height: 1.1;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 2px 0;
 }
 
 .stat-change {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    gap: 3px;
+    font-size: 11.5px;
     font-weight: 500;
-    margin-top: 4px;
 }
 
 .stat-change.positive {
-    color: #16a34a;
+    color: #2DB596;
 }
 
 .stat-change.negative {
-    color: #dc2626;
+    color: #E05252;
 }
 
 .stat-change.neutral {
-    color: #6b7280;
+    color: #9ca3af;
 }
 
-/* Stat icon bubble */
 .stat-icon {
     width: 44px;
     height: 44px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: #6b7280;
 }
 
-/* ---- Charts row ---- */
+.stat-blue .stat-icon {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.stat-teal .stat-icon {
+    background: #f0fdf9;
+    color: #2DB596;
+}
+
+.stat-amber .stat-icon {
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.stat-red .stat-icon {
+    background: #fef2f2;
+    color: #E05252;
+}
+
+/* ── Charts Row ── */
 .dash-charts {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 420px;
+    grid-template-columns: 1fr 340px;
     gap: 16px;
+    margin-bottom: 24px;
 }
 
-/* ---- Chart card ---- */
+@media (max-width: 1000px) {
+    .dash-charts {
+        grid-template-columns: 1fr;
+    }
+}
+
 .chart-card {
-    background: #ffffff;
-    border-radius: 14px;
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    padding: 22px 24px 20px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 22px;
+    border: 1px solid #f0f2f5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    animation: card-in 0.35s ease 0.25s both;
 }
 
 .chart-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: #111827;
-    margin: 0 0 4px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 6px;
 }
 
 .chart-legend {
@@ -161,89 +190,59 @@
     align-items: center;
     font-size: 12px;
     color: #6b7280;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin-bottom: 16px;
-    gap: 6px;
+    margin-bottom: 14px;
 }
 
 .legend-dot {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    flex-shrink: 0;
+    margin-right: 5px;
 }
 
 .chart-wrap {
     position: relative;
-    height: 280px;
+    height: 220px;
 }
 
 .chart-donut-wrap {
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 240px;
 }
 
-/* --- Scoped variables (override to match your dashboard theme) --- */
-:root {
-    --ra-accent: #2ab7a4;
-    /* teal dot / hover bar */
-    --ra-bg: #ffffff;
-    --ra-border: #e8ecef;
-    --ra-text: #2d3748;
-    --ra-subtext: #8a96a3;
-    --ra-radius: 12px;
-    --ra-shadow: 0 2px 12px rgba(0, 0, 0, .07);
-    --ra-font: 'Segoe UI', system-ui, sans-serif;
-}
-
-/* --- Card shell --- */
+/* ── Recent Activity ── */
 .ra-card {
-    background: var(--ra-bg);
-    border: 1px solid var(--ra-border);
-    border-radius: var(--ra-radius);
-    box-shadow: var(--ra-shadow);
-    padding: 0;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #f0f2f5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     overflow: hidden;
-    font-family: var(--ra-font);
-    width: 100%;
-    margin-top: 15px;
-    box-sizing: border-box;
+    animation: card-in 0.35s ease 0.3s both;
 }
 
-/* --- Header --- */
 .ra-header {
-    padding: 18px 22px 14px;
-    border-bottom: 1px solid var(--ra-border);
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f2f5;
 }
 
 .ra-header h2 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--ra-text);
-    letter-spacing: -.01em;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
 }
 
-/* --- List --- */
 .ra-list {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
-/* --- Individual row --- */
 .ra-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 13px 20px;
+    border-bottom: 1px solid #f9fafb;
+    transition: background 0.12s ease;
     gap: 12px;
-    padding: 14px 22px;
-    border-bottom: 1px solid var(--ra-border);
-    transition: background .18s ease;
-    position: relative;
 }
 
 .ra-item:last-child {
@@ -251,110 +250,30 @@
 }
 
 .ra-item:hover {
-    background: #f7fffe;
+    background: #fafbfc;
 }
 
-/* Hover accent bar */
-.ra-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--ra-accent);
-    opacity: 0;
-    transition: opacity .18s ease;
-    border-radius: 0 2px 2px 0;
-}
-
-.ra-item:hover::before {
-    opacity: 1;
-}
-
-/* --- Left side (dot + text) --- */
 .ra-left {
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 0;
-    /* allow text truncation */
+    gap: 10px;
 }
 
-/* Dot */
 .ra-dot {
-    flex-shrink: 0;
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: var(--ra-accent);
-}
-
-/* Activity text */
-.ra-text {
-    font-size: .875rem;
-    color: var(--ra-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* --- Timestamp --- */
-.ra-time {
     flex-shrink: 0;
-    font-size: .78rem;
-    color: var(--ra-subtext);
+}
+
+.ra-text {
+    font-size: 13px;
+    color: #374151;
+}
+
+.ra-time {
+    font-size: 11.5px;
+    color: #9ca3af;
     white-space: nowrap;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 1100px) {
-    .dash-charts {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 900px) {
-    .dash-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 560px) {
-    .dash-main {
-        padding: 20px 16px 32px;
-    }
-
-    .dash-cards {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
-    .stat-value {
-        font-size: 22px;
-    }
-
-    .stat-icon {
-        display: none;
-    }
-}
-
-@media (max-width: 400px) {
-    .dash-cards {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* --- Responsive: stack on very small screens --- */
-@media (max-width: 480px) {
-    .ra-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-
-    .ra-time {
-        padding-left: 21px;
-        /* align under text, past dot */
-    }
+    flex-shrink: 0;
 }
