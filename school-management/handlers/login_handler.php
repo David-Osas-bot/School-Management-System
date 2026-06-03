@@ -39,21 +39,21 @@ if (isset($_POST['submit'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['name'];
             $_SESSION['email'] = $row['email'];
-
-            echo '
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    Swal.fire({
-                        title: "Login Successful !!!",
-                        icon: "success",
-                        confirmButtonText: "Home"
-                    }).then(() => {
-                        window.location.href = "/SMS/school-management/includes/layout_start.php";
-                    });
-                });
-            </script>
-            ';
+            //   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            //             <script>
+            //                 document.addEventListener("DOMContentLoaded", function() {
+            //                     Swal.fire({
+            //                         title: "Login Successful !!!",
+            //                         icon: "success",
+            //                         confirmButtonText: "Home"
+            //                     }).then(() => {
+            //                         window.location.href = "/SMS/index.php";
+            //                     });
+            //                 });
+            //             </script>
+            // Clear, functional native PHP redirect
+            header("Location: ../index.php");
+            exit();
         } else {
 
             echo '
