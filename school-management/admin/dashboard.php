@@ -13,17 +13,17 @@
 session_start();
 
 $pageTitle   = 'Dashboard';
-$currentPage = 'index';
-$pageCss     = 'index';         // loads assets/css/index.css
+$currentPage = 'dashboard';
+$pageCss     = 'dashboard';         // loads assets/css/index.css
 $pageScripts = [
     'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
     'assets/js/index.js',
 ];
 
-require_once 'includes/layout_start.php';
+require_once '../includes/layout_start.php';
 ?>
 
-<link rel="stylesheet" href="assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/index.css">
 
 
 <!-- ══════════════════════════════════════════════════
