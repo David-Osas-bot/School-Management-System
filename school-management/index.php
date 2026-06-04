@@ -53,12 +53,43 @@
     <!-- =====================
          HERO
     ===================== -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-bg-dots" aria-hidden="true"></div>
+      <section class="hero" aria-labelledby="hero-heading">
+    
+    <div class="hero-visual" aria-hidden="true">
+      <video autoplay muted loop playsinline>
+          <source src="assets/images/sch-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
 
-      <!-- Left -->
-      <div class="hero-content">
+      <div class="float-card float-card--students">
+        <div class="fc-icon fc-icon--green" aria-hidden="true">🎓</div>
+        <div class="fc-info">
+          <strong>2.4M+</strong>
+          <span>Active Students</span>
+        </div>
+      </div>
 
+      <div class="float-card float-card--rating">
+        <div class="fc-icon fc-icon--yellow" aria-hidden="true">⭐</div>
+        <div class="fc-info">
+          <strong>4.9 / 5</strong>
+          <span>Teacher Rating</span>
+        </div>
+      </div>
+
+      <div class="float-card float-card--lessons">
+        <div class="fc-icon fc-icon--blue" aria-hidden="true">📘</div>
+        <div class="fc-info">
+          <strong>180K</strong>
+          <span>Lessons Created</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-bg-dots" aria-hidden="true"></div>
+
+     <div class="hero-content">
+ 
         <div class="price-badge" role="note" aria-label="Pricing offer">
           <span class="badge-pill">30 DAYS FREE</span>
           <div class="price-info">
@@ -66,16 +97,16 @@
             <span class="original">Original price: $14.95</span>
           </div>
         </div>
-
+ 
         <h1 class="hero-headline" id="hero-heading">
           Your lessons,<br>
           <span class="accent">our tools!</span>
         </h1>
-
+ 
         <p class="hero-sub">
           Schoolify® sets the new standard in classroom engagement and saving teachers valuable time.
         </p>
-
+ 
         <div class="hero-actions">
           <a href="#" class="btn-primary">
             <span class="btn-icon" aria-hidden="true">
@@ -86,7 +117,7 @@
               <small>No payment details required</small>
             </span>
           </a>
-
+ 
           <a href="#" class="btn-secondary">
             <span class="btn-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
@@ -97,52 +128,8 @@
             </span>
           </a>
         </div>
-
-        <div class="trust-row" aria-label="Trust indicators">
-          <div class="trust-item"><span class="dot" aria-hidden="true"></span>Trusted by 50,000+ teachers</div>
-          <div class="trust-item"><span class="dot" aria-hidden="true"></span>GDPR Compliant</div>
-          <div class="trust-item"><span class="dot" aria-hidden="true"></span>Cancel anytime</div>
-        </div>
-      </div>
-
-      <!-- Right visual -->
-      <div class="hero-visual" aria-hidden="true">
-        <!-- Placeholder gradient hero image — replace src with real photo -->
-        <img
-          class="hero-img"
-          src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80"
-          alt="Teacher writing on whiteboard in classroom"
-          loading="eager"
-          width="900"
-          height="900"
-        />
-
-        <!-- Floating stat cards -->
-        <div class="float-card float-card--students">
-          <div class="fc-icon fc-icon--green" aria-hidden="true">🎓</div>
-          <div class="fc-info">
-            <strong>2.4M+</strong>
-            <span>Active Students</span>
-          </div>
-        </div>
-
-        <div class="float-card float-card--rating">
-          <div class="fc-icon fc-icon--yellow" aria-hidden="true">⭐</div>
-          <div class="fc-info">
-            <strong>4.9 / 5</strong>
-            <span>Teacher Rating</span>
-          </div>
-        </div>
-
-        <div class="float-card float-card--lessons">
-          <div class="fc-icon fc-icon--blue" aria-hidden="true">📘</div>
-          <div class="fc-info">
-            <strong>180K</strong>
-            <span>Lessons Created</span>
-          </div>
-        </div>
-      </div>
-    </section>
+ 
+  </section>
 
     <!-- =====================
          STATS BAR
@@ -390,5 +377,7 @@
       </div>
     </div>
   </footer>
+
+  <script src="assets/js/index.js"></script>
 </body>
 </html> 
