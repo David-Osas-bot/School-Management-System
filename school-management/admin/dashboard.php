@@ -17,7 +17,7 @@ $currentPage = 'dashboard';
 $pageCss     = 'dashboard';         // loads assets/css/index.css
 $pageScripts = [
     'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
-    'assets/js/index.js',
+    '../assets/js/dashboard.js',
 ];
 
 require_once '../includes/layout_start.php';
@@ -194,4 +194,4 @@ require_once '../includes/layout_start.php';
     </ul>
 </div>
 
-<?php require_once 'includes/layout_end.php'; ?>
+<?php require_once '../includes/layout_end.php'; ?>
