@@ -24,7 +24,7 @@
 
 // ── Guard: make sure the caller set required vars ─────────────
 $pageTitle   = $pageTitle   ?? 'Dashboard';
-$currentPage = $currentPage ?? 'index';
+$currentPage = $currentPage ?? 'dashboard';
 $pageCss     = $pageCss     ?? null;
 
 // ── User info from session ────────────────────────────────────
@@ -40,7 +40,7 @@ $userInitials = strtoupper(
 // Each entry: [ key, label, href, icon_svg_path ]
 $navGroups = [
     'CORE' => [
-        ['index',      'Dashboard',     '/SMS/school-management/admin/index.php',      '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>'],
+        ['index',      'Dashboard',     '/SMS/school-management/admin/dashboard.php',      '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>'],
         ['students',   'Students',      '/SMS/school-management/admin/students.php',   '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'],
         ['teachers',   'Teachers',      '/SMS/school-management/admin/teachers.php',   '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>'],
         ['courses',    'Classes',       '/SMS/school-management/admin/courses.php',    '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'],
