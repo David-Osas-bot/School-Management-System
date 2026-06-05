@@ -265,7 +265,7 @@
        HERO SECTION
 =========================== */
  .hero {
-     min-height: 100vh;
+     height: 100vh;
      padding-top: var(--nav-h);
      display: flex;
      /* Changed from grid to flex to stop splitting columns */
@@ -312,7 +312,7 @@
      z-index: 1;
  }
 
- 
+
  /* ---- BACKGROUND VIDEO WRAPPER ---- */
  .hero-visual {
      position: absolute;
@@ -991,10 +991,6 @@
      .footer-top {
          grid-template-columns: 1fr 1fr;
      }
-
-     .stat-item{
-        display: none;
-     }
  }
 
  @media (max-width: 640px) {
@@ -1008,9 +1004,10 @@
          display: flex;
      }
 
-     /* .stats-bar {
+     .stats-bar {
          padding: 1.5rem 5%;
-     } */
+     }
+
 
      .features,
      .pricing,
@@ -1031,9 +1028,10 @@
          padding: 4rem 5%;
      }
 
-     .stat-item{
-        display: none;
+     .float-card {
+         display: none;
      }
+
  }
 
 
