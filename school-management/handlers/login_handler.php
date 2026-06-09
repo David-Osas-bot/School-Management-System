@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['name'];
             $_SESSION['email'] = $row['email'];
-            header("Location: ../index.php");
+            header("Location: ../admin/dashboard.php");
             exit();
         } else {
 
