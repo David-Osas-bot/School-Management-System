@@ -23,8 +23,6 @@ $pageScripts = [
 require_once '../includes/layout_start.php';
 ?>
 
-<link rel="stylesheet" href="../assets/css/dashboard.css">
-
 
 <!-- ══════════════════════════════════════════════════
      DASHBOARD PAGE CONTENT
